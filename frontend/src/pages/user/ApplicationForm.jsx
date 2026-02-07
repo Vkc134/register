@@ -64,7 +64,7 @@ const ApplicationForm = () => {
         if (!formData.currentLocation.trim()) newErrors.currentLocation = "Location is required";
 
         // PAN (ABCDE1234F)
-        const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+        const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/i;
         if (!formData.panNumber) newErrors.panNumber = "PAN Number is required";
         else if (!panRegex.test(formData.panNumber)) {
             newErrors.panNumber = "Invalid PAN format (e.g. ABCDE1234F)";
