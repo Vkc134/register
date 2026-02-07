@@ -6,7 +6,7 @@ export const useData = () => useContext(DataContext);
 
 export const DataProvider = ({ children }) => {
     const [candidates, setCandidates] = useState([]);
-    const API_URL = "http://localhost:8000/candidates";
+    const API_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/candidates`;
 
     useEffect(() => {
         fetchCandidates();
