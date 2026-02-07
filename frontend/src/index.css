@@ -1,0 +1,208 @@
+:root {
+  /* HSL Color Palette - Professional Corporate Theme */
+  --hue-primary: 220;
+  /* Royal Blue / Navy */
+  --hue-success: 150;
+  --hue-danger: 350;
+
+  /* Light Theme Defaults (Corporate) */
+  --color-bg: hsl(210, 20%, 98%);
+  /* Very light cool gray */
+  --color-surface: hsl(0, 0%, 100%);
+  --color-surface-translucent: hsla(0, 0%, 100%, 0.85);
+
+  --color-text-main: hsl(215, 40%, 15%);
+  /* Dark navy text */
+  --color-text-muted: hsl(215, 20%, 45%);
+
+  --color-primary: hsl(var(--hue-primary), 90%, 45%);
+  /* Standard Corporate Blue */
+  --color-primary-hover: hsl(var(--hue-primary), 90%, 35%);
+  --color-primary-text: hsl(0, 0%, 100%);
+
+  --color-border: hsl(215, 20%, 90%);
+  /* Light blue-gray border */
+
+  /* Spacing & Radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  /* Slightly sharper for professional look */
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+  --shadow-glow: 0 0 10px hsla(var(--hue-primary), 80%, 60%, 0.1);
+  /* Subtle */
+
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light;
+  /* Force light mode preference primarily */
+  color: var(--color-text-main);
+  background-color: var(--color-bg);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optional Dark Mode (Subtle Slate instead of pure black) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* To ensure professional look, we can just stick to light mode or make dark mode very high contrast/slate */
+    /* Commenting out dark mode overrides to force the professional light theme as requested */
+    /* If dark mode is absolutely needed, use Slate-900 not Black */
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Utility / Component Classes */
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-text);
+  box-shadow: var(--shadow-md), var(--shadow-glow);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-main);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Forms */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text-main);
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px hsla(var(--hue-primary), 80%, 60%, 0.2);
+}
+
+/* Cards */
+.card {
+  background-color: var(--color-surface-translucent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Layouts */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+}
+
+.auth-layout {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: radial-gradient(circle at top left, hsla(var(--hue-primary), 80%, 60%, 0.1), transparent 40%),
+    radial-gradient(circle at bottom right, hsla(var(--hue-primary), 80%, 60%, 0.05), transparent 40%);
+}
+
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
