@@ -117,3 +117,15 @@ async def mark_candidate_viewed(id: str, current_user: dict = Depends(get_curren
     if result.modified_count == 1:
         return {"message": "Candidate marked as viewed"}
     return {"message": "Candidate not found or already viewed"}
+
+@router.delete("/candidates/{id}")
+async def delete_candidate(id: str, current_user: dict = Depends(get_current_user)):
+    if current_user["role"] != "admin":
+         raise HTTPException(status_code=403, detail="Not authorized")
+
+    result = await candidates_collection.delete_one({"id": id})
+    
+    if result.deleted_count == 1:
+        return {"message": "Candidate deleted successfully"}
+    
+    raise HTTPException(status_code=404, detail="Candidate not found")

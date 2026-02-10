@@ -174,8 +174,28 @@ export const DataProvider = ({ children }) => {
         }
     };
 
+    const deleteCandidate = async (id) => {
+        try {
+            const response = await fetch(`${API_URL}/${id}`, {
+                method: 'DELETE',
+                headers: getAuthHeaders()
+            });
+
+            if (response.ok) {
+                setCandidates(prev => prev.filter(c => c.id !== id));
+                return true;
+            } else {
+                console.error("Failed to delete candidate");
+                return false;
+            }
+        } catch (error) {
+            console.error("Error deleting candidate:", error);
+            return false;
+        }
+    };
+
     return (
-        <DataContext.Provider value={{ candidates, addCandidate, getCandidate, markCandidateViewed }}>
+        <DataContext.Provider value={{ candidates, addCandidate, getCandidate, markCandidateViewed, deleteCandidate }}>
             {children}
         </DataContext.Provider>
     );

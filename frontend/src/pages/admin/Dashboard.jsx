@@ -1,11 +1,11 @@
 import { useData } from '../../context/DataContext';
 import { useNavigate } from 'react-router-dom';
-import { Eye, FileText, Search, Download } from 'lucide-react';
+import { Eye, FileText, Search, Download, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import Papa from 'papaparse';
 
 const Dashboard = () => {
-    const { candidates } = useData();
+    const { candidates, deleteCandidate } = useData();
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
     const [statusFilter, setStatusFilter] = useState('all');
@@ -102,6 +102,17 @@ const Dashboard = () => {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+    };
+
+    const handleDelete = async (id, name) => {
+        if (window.confirm(`Are you sure you want to delete the application for ${name}? This action cannot be undone.`)) {
+            const success = await deleteCandidate(id);
+            if (success) {
+                // Optional: Show a toast notification or alert
+            } else {
+                alert("Failed to delete candidate. Please try again.");
+            }
+        }
     };
 
     return (
@@ -237,13 +248,22 @@ const Dashboard = () => {
                                             )}
                                         </td>
                                         <td style={{ padding: '1rem' }}>{candidate.currentLocation}</td>
-                                        <td style={{ padding: '1rem' }}>
+                                        <td style={{ padding: '1rem', display: 'flex', gap: '0.5rem' }}>
                                             <button
                                                 className="btn btn-primary"
                                                 style={{ padding: '0.5rem 1rem', fontSize: '0.8rem' }}
                                                 onClick={() => navigate(`/admin/candidate/${candidate.id}`)}
+                                                title="View Details"
                                             >
-                                                <Eye size={16} /> View
+                                                <Eye size={16} />
+                                            </button>
+                                            <button
+                                                className="btn btn-outline"
+                                                style={{ padding: '0.5rem 1rem', fontSize: '0.8rem', color: 'var(--color-danger)', borderColor: 'var(--color-danger)' }}
+                                                onClick={() => handleDelete(candidate.id, candidate.name)}
+                                                title="Delete Application"
+                                            >
+                                                <Trash2 size={16} />
                                             </button>
                                         </td>
                                     </tr>
