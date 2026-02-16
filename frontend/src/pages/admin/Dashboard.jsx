@@ -86,7 +86,8 @@ const Dashboard = () => {
             "Application Status": c.isViewed ? 'Viewed' : 'Pending Review',
             "Submitted At": new Date(c.submittedAt).toLocaleString(),
             "Expected Salary": c.expectedSalary || '',
-            "Resume Link": c.resumeLink || ''
+            "Resume Link": c.resumeLink || '',
+            "Referred By": c.referredBy || ''
         }));
 
         const csv = Papa.unparse(exportData);
