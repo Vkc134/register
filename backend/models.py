@@ -43,6 +43,7 @@ class CandidateBase(BaseModel):
     hasPF: Optional[str] = None
     careerGaps: Optional[str] = None
     overlaps: Optional[str] = None
+    referredBy: Optional[str] = None
     status: str = "Pending"
 
 class CandidateCreate(CandidateBase):

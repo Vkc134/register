@@ -31,7 +31,8 @@ const ApplicationForm = () => {
         hasForm16: 'Yes',
         hasPF: 'Yes',
         careerGaps: '',
-        overlaps: ''
+        overlaps: '',
+        referredBy: ''
     });
 
     const handleChange = (e) => {
@@ -154,7 +155,7 @@ const ApplicationForm = () => {
                         highestEducation: '', passedOutYear: '', skill: '', isFresher: 'No',
                         totalExperience: '', relevantExperience: '', currentCompany: '', previousCompanies: '',
                         isCurrentlyWorking: 'Yes', currentCTC: '', expectedCTC: '', noticePeriod: '',
-                        hasForm16: 'Yes', hasPF: 'Yes', careerGaps: '', overlaps: ''
+                        hasForm16: 'Yes', hasPF: 'Yes', careerGaps: '', overlaps: '', referredBy: ''
                     });
                 }}>
                     Submit Another Response
@@ -202,6 +203,10 @@ const ApplicationForm = () => {
                             <label className="label">PAN Number *</label>
                             <input name="panNumber" className={`input ${errors.panNumber ? 'input-error' : ''}`} value={formData.panNumber} onChange={handleChange} placeholder="ABCDE1234F" style={{ textTransform: 'uppercase' }} maxLength="10" />
                             <ErrorMsg name="panNumber" />
+                        </div>
+                        <div className="form-group">
+                            <label className="label">Referred By (Optional)</label>
+                            <input name="referredBy" className="input" value={formData.referredBy} onChange={handleChange} placeholder="Name of referrer" />
                         </div>
                     </div>
                 </section>

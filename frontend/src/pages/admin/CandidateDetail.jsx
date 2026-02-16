@@ -106,10 +106,11 @@ const CandidateDetail = () => {
                 )}
             </Section>
 
-            {candidate.overlaps && (
+            {(candidate.overlaps || candidate.referredBy) && (
                 <Section title="Additional Info" icon={FileText}>
                     <div style={{ gridColumn: '1 / -1' }}>
-                        <Item label="Overlaps / Notes" value={candidate.overlaps} />
+                        {candidate.referredBy && <Item label="Referred By" value={candidate.referredBy} />}
+                        {candidate.overlaps && <Item label="Overlaps / Notes" value={candidate.overlaps} />}
                     </div>
                 </Section>
             )}

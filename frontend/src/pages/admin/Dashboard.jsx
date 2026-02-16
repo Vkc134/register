@@ -33,6 +33,7 @@ const Dashboard = () => {
         let matchesExp = true;
         if (expFilter !== 'all') {
             if (expFilter === 'fresher') matchesExp = c.isFresher === 'Yes';
+            else if (expFilter === 'experienced') matchesExp = c.isFresher === 'No';
             else if (c.isFresher === 'No') {
                 const exp = parseFloat(c.totalExperience || 0);
                 if (expFilter === '1-3') matchesExp = exp >= 1 && exp <= 3;
@@ -165,6 +166,7 @@ const Dashboard = () => {
                     options={[
                         { value: 'all', label: 'All Experience' },
                         { value: 'fresher', label: 'Fresher' },
+                        { value: 'experienced', label: 'Experienced' },
                         { value: '1-3', label: '1-3 Years' },
                         { value: '3-5', label: '3-5 Years' },
                         { value: '5+', label: '5+ Years' }
